@@ -1,4 +1,4 @@
-# auto-install-desktop-programs
+# automated-install-linux-mint
 This bash script will auto install selected desktop programs on Linux Mint - Tested with 20.2 Uma.
 
 "chmod +x automated-install-linux-mint.sh" the file before starting, and make sure you run as root!
