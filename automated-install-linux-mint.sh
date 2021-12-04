@@ -52,7 +52,9 @@ apt update && apt install veracrypt y-ppa-manager -y
 echo "Installing snap packages"
 snap install plexmediaserver foliate nordpass telegram-desktop 
 
-service plexmediaserver restart
+snap stop plexmediaserver
+snap start plexmediaserver
+
 #allows nordpass snap to connect to browsers
 snap connect nordpass:password-manager-service
 
