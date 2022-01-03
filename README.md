@@ -5,11 +5,10 @@ This bash script will auto install selected desktop programs on Linux Mint - Tes
 
 It will auto install all the below apps:
 
-apt-transport-https, backup (Déjà Dup), balena etcher, bleachbit, curl, dangerzone, dconf-editor, dialog, deluge, foliate (ebook reader), filezilla, firefox, gdebi, geany, gimp, git, gnupg, gnome-tweak-tool, gparted, gufw, htop, libreoffice (calc & writer), livepatch, mat2, nordpass, openvpn, plex, rkhunter, snap (package manager), snapd, synaptic, tilix, telegram, unrar, veracrypt, virtualbox, visual studio code, vlc, webtorrent, wget, y-ppa-manager, zip, zsh.
+apt-transport-https, backup (Déjà Dup), balena etcher, bleachbit, brave browser, chrome, curl, dangerzone, dconf-editor, dialog, deluge, foliate (ebook reader), filezilla, firefox, gdebi, geany, gimp, git, gnupg, gparted, gufw, htop, libreoffice (calc & writer), mat2, nordpass, openvpn, plex, rkhunter, snap (package manager), snapd, synaptic, tilix, telegram, unrar, veracrypt, virtualbox, visual studio code, vlc, webtorrent, wget, y-ppa-manager, zip, zsh.
 
 Get's my other scripts's (rkhunter-script & auto-update-ubuntu.sh)
 
-A great cloud provider, pCloud: https://www.pcloud.com/how-to-install-pcloud-drive-linux.html?download=electron-64
 oh my zsh is a great add-on to zsh: https://github.com/ohmyzsh/ohmyzsh
 
 Also installs rkhunter (a rootkit hunter) which can be configured with the below link:
