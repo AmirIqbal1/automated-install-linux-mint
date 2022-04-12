@@ -31,11 +31,11 @@ add-apt-repository ppa:unit193/encryption -y &&
 add-apt-repository ppa:webupd8team/y-ppa-manager -y &&
 apt update && apt install veracrypt y-ppa-manager -y
 
-echo "Installing snap packages"
-snap install plexmediaserver nordpass telegram-desktop 
+echo "let's enable snap packages"
+rm /etc/apt/preferences.d/nosnap.pref && apt install snapd -y
 
-snap stop plexmediaserver &&
-snap start plexmediaserver
+echo "Installing snap packages"
+snap install nordpass telegram-desktop 
 
 #allows nordpass snap to connect to browsers
 snap connect nordpass:password-manager-service
@@ -49,10 +49,10 @@ curl -1sLf \
    | sudo -E bash &&
    apt update && apt install balena-etcher-electron -y
 
-echo "Installing WebTorrent, Chrome & Foliate" 
-wget https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb https://github.com/johnfactotum/foliate/releases/download/2.6.3/com.github.johnfactotum.foliate_2.6.3_all.deb
-dpkg -i webtorrent*.deb google-chrome-stable*.deb com.github.johnfactotum.foliate*.deb
-rm webtorrent*.deb google-chrome-stable*.deb com.github.johnfactotum.foliate*.deb
+echo "Installing WebTorrent & Chrome" 
+wget https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i webtorrent*.deb google-chrome-stable*.deb
+rm webtorrent*.deb google-chrome-stable*.deb 
 apt -f install
 
 #auto gets my other script's
@@ -60,11 +60,6 @@ echo "Grabbing other scripts: rkhunter-check, auto-update-ubuntu-script"
 wget https://raw.githubusercontent.com/AmirIqbal1/auto-update-ubuntu-script/master/update.sh https://raw.githubusercontent.com/AmirIqbal1/rkhunter-script/master/rkhunter-check.sh
 echo "chmodding above scripts"
 chmod +x update.sh rkhunter-check.sh
-
-echo "Installing dangerzone"
-apt update
-curl -s https://packagecloud.io/install/repositories/firstlookmedia/code/script.deb.sh | sudo bash &&
-apt update && apt install dangerzone -y
 
 #fixes any errors and auto cleans packages
 echo "auto cleaning now, and fixing any errors."
