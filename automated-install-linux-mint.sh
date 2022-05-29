@@ -35,7 +35,7 @@ echo "let's enable snap packages"
 rm /etc/apt/preferences.d/nosnap.pref && apt install snapd -y
 
 echo "Installing snap packages"
-snap install nordpass telegram-desktop 
+snap install nordpass telegram-desktop authy
 
 #allows nordpass snap to connect to browsers
 snap connect nordpass:password-manager-service
