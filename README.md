@@ -5,7 +5,7 @@ This bash script will auto install selected desktop programs on Linux Mint - Tes
 
 It will auto install the selected apps below: 
 
-apt-transport-https, backup (Déjà Dup), balena etcher, bleachbit, brave browser, chrome, curl, dconf-editor, dialog, deluge, filezilla, firefox, gdebi, gimp, git, gnupg, gparted, gufw, htop, libreoffice (calc & writer), mat2, nordpass, openvpn, plex, rkhunter, snap (package manager), snapd, synaptic, tilix, telegram, unrar, veracrypt, virtualbox, visual studio code, vlc, webtorrent, wget, y-ppa-manager, zip, zsh.
+apt-transport-https, authy, backup (Déjà Dup), balena etcher, bleachbit, brave browser, chrome, curl, dconf-editor, dialog, deluge, filezilla, firefox, gdebi, gimp, git, gnupg, gparted, gufw, htop, libreoffice (calc & writer), mat2, nordpass, openvpn, plex, rkhunter, snap (package manager), snapd, synaptic, tilix, telegram, unrar, veracrypt, virtualbox, visual studio code, vlc, webtorrent, wget, y-ppa-manager, zip, zsh.
 
 Get's my other scripts's (rkhunter-script & auto-update-ubuntu.sh)
 
