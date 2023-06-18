@@ -21,11 +21,6 @@ apt autoclean
 
 apt install mat2 bleachbit curl dconf-editor deluge filezilla firefox gufw git gimp gdebi gparted htop libreoffice-calc libreoffice-writer openvpn rkhunter snap snapd synaptic tilix virtualbox vlc unrar wget zip zsh dialog gnupg apt-transport-https -y
 
-echo "Installing Brave Browser"
-curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg && 
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list && 
-apt update && apt install brave-browser -y
-
 echo "installing veracrypt & y-ppa-manager via PPA"
 add-apt-repository ppa:unit193/encryption -y &&
 add-apt-repository ppa:webupd8team/y-ppa-manager -y &&
@@ -35,7 +30,7 @@ echo "let's enable snap packages"
 rm /etc/apt/preferences.d/nosnap.pref && apt install snapd -y
 
 echo "Installing snap packages"
-snap install nordpass telegram-desktop authy
+snap install nordpass telegram-desktop authy brave
 
 #allows nordpass snap to connect to browsers
 snap connect nordpass:password-manager-service
