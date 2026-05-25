@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
-  echo "Run with: sudo bash install-mint.sh"
+  echo "Run with: sudo ./install-mint.sh"
   exit 1
 fi
 
