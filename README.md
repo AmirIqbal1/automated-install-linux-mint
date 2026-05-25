@@ -1,29 +1,221 @@
-# automated-install-linux-mint
-This bash script will auto install selected desktop programs on Linux Mint - Tested with 20.2 Uma.
+# 🍃 install-mint.sh — Linux Mint Auto Setup Script
 
-"chmod +x automated-install-linux-mint.sh" the file before starting, and make sure you run as root!
+![Linux Mint](https://img.shields.io/badge/Linux%20Mint-22.x-86BE43?logo=linuxmint)
+![Ubuntu Base](https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu)
+![Shell Script](https://img.shields.io/badge/script-bash-1f425f.svg)
+![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)
 
-It will auto install the selected apps below: 
+A bash script that automates the installation of essential desktop applications, developer tools, system utilities, and performance tweaks for **Linux Mint 22.x** (Ubuntu 24.04 base).
 
-apt-transport-https, authy, backup (Déjà Dup), balena etcher, bleachbit, brave browser, chrome, curl, dconf-editor, dialog, deluge, filezilla, firefox, gdebi, gimp, git, gnupg, gparted, gufw, htop, libreoffice (calc & writer), mat2, nordpass, openvpn, plex, rkhunter, snap (package manager), snapd, synaptic, tilix, telegram, unrar, veracrypt, virtualbox, visual studio code, vlc, webtorrent, wget, y-ppa-manager, zip, zsh.
+---
 
-Get's my other scripts's (rkhunter-script & auto-update-ubuntu.sh)
+# 🚀 TL;DR
 
-oh my zsh is a great add-on to zsh: https://github.com/ohmyzsh/ohmyzsh
+This script:
 
-Also installs rkhunter (a rootkit hunter) which can be configured with the below link:
+- Installs popular desktop apps using APT, Flatpak, and official `.deb` packages
+- Adds SSD and memory optimisations
+- Enables swap compression with `zram`
+- Installs TLP for improved battery life on laptops
+- Enables SSD TRIM automatically
+- Downloads maintenance and security helper scripts
+- Uses Flatpak only where it makes sense
 
-https://kifarunix.com/how-to-install-rkhunter-rootkit-hunter-on-ubuntu-18-04/
+---
 
-Remember to setup zsh, and add this to your root zshrc file (nano ~/.zshrc) & in your user home folder (/home/$USER/.zshrc).
+# 📦 How to Use
 
-alias l='ls'  
-alias la='ls -a'  
-alias ll='ls -al'   
-alias aptupdate='dpkg --configure -a && apt update && apt upgrade -y && apt install -f && apt clean && apt autoclean && apt autoremove -y'      
-alias sudo='sudo -s'  
-alias servicestat='service --status-all'  
-#alias plexstart='snap start plexmediaserver'    
-#alias stopplex='snap stop plexmediaserver'    
+Run the following commands:
 
-then (source /root/.zshrc) & (source /home/$USER/.zshrc) to apply changes.
+```bash
+chmod +x install-mint.sh
+sudo ./install-mint.sh
+```
+
+---
+
+# 🖥️ APT Installed Applications
+
+```text
+curl
+wget
+zip / unzip
+gdebi
+git
+htop
+gparted
+gufw
+synaptic
+tilix
+openvpn
+rkhunter
+preload
+zram-tools
+flatpak
+libreoffice
+bleachbit
+deluge
+foliate
+gimp
+thunderbird
+plank
+tlp
+celluloid
+timeshift
+mint-meta-codecs
+mintinstall
+```
+
+---
+
+# 📥 Installed via Official .deb Packages
+
+| Application      | Install Method |
+|------------------|----------------|
+| Google Chrome    | Official `.deb` |
+| VeraCrypt        | Ubuntu 24.04 `.deb` |
+| Balena Etcher    | Official `.deb` |
+| WebTorrent       | GitHub release `.deb` |
+
+---
+
+# 🧠 Installed via Official Repositories
+
+| Application       | Source |
+|-------------------|--------|
+| VS Code           | Microsoft APT Repository |
+| Spotify           | Spotify APT Repository |
+
+---
+
+# 📦 Flatpak Applications
+
+```text
+Telegram
+Warehouse
+Video Downloader
+GNOME Calculator
+jExifToolGUI
+```
+
+---
+
+# ⚡ System Enhancements
+
+## SSD TRIM Support
+
+Executes:
+
+```bash
+fstrim -av
+```
+
+Enables:
+
+```bash
+fstrim.timer
+```
+
+Automatically trims SSDs weekly.
+
+---
+
+## 🔋 TLP Power Optimisation
+
+TLP is installed and enabled automatically.
+
+Helps reduce battery drain on laptops and improves power efficiency.
+
+---
+
+# 🧠 Memory & Cache Tweaks
+
+## zram Compression
+
+Installs:
+
+```bash
+zram-tools
+```
+
+Compresses swap data in RAM for better responsiveness under memory pressure.
+
+---
+
+## Filesystem Cache Optimisation
+
+Applies:
+
+```bash
+vm.vfs_cache_pressure=50
+```
+
+Helps Linux keep useful filesystem metadata cached longer.
+
+Persisted in:
+
+```text
+/etc/sysctl.d/99-mint-performance.conf
+```
+
+---
+
+# 🛠️ Additional Scripts & Repositories
+
+| Tool/Repo                                                             | Description |
+|------------------------------------------------------------------------|-------------|
+| [`rkhunter-check`](https://github.com/AmirIqbal1/rkhunter-script)     | Automates rkhunter scans |
+| [`flatpak_cleanup.sh`](https://github.com/AmirIqbal1/Flatpak-cleaner) | Removes unused Flatpak data |
+| [`hardening-debian`](https://github.com/AmirIqbal1/hardening-debian)  | Security hardening tools |
+
+---
+
+# 🛡️ Rootkit Hunter (rkhunter)
+
+`rkhunter` is installed to help detect:
+
+- Rootkits
+- Backdoors
+- Suspicious binaries
+- Local exploits
+
+Helpful guide:
+
+[How to configure rkhunter](https://tecadmin.net/how-to-install-rkhunter-on-ubuntu)
+
+---
+
+# ❌ Removed Packages
+
+The script removes:
+
+```text
+Firefox
+Deja Dup
+```
+
+---
+
+# 📋 Tested On
+
+- Linux Mint 22.x Cinnamon
+- Ubuntu 24.04 base
+
+---
+
+# 🔄 After Installation
+
+A reboot is recommended after installation completes.
+
+```bash
+sudo reboot
+```
+
+---
+
+# ⚠️ Notes
+
+- Review scripts before running on production systems
+- Some package versions may change upstream over time
+- Internet connection required
+- Run at your own risk
