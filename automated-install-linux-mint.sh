@@ -1,71 +1,109 @@
 #!/bin/bash
+set -euo pipefail
 
-#checks if your root
-## get UID 
-uid=$(id -u)
- 
-[ $uid -ne 0 ] && { echo "Only a root user may run this. Please login as root."; exit 1; }
+if [ "$EUID" -ne 0 ]; then
+  echo "Run with: sudo bash install-mint.sh"
+  exit 1
+fi
 
-echo ""
-read -p "This script will auto install selected programs on Ubuntu OS. View the README file to see what gets installed." -t 6
-echo ""
+echo "Linux Mint setup script - Mint 22.x / Ubuntu 24.04 base"
+sleep 3
 
-#updates system ready for script
-echo "getting system ready for packages to be installed"
-dpkg --configure -a &&
-apt update &&
-apt upgrade -y &&
-apt install -f &&
-apt clean &&
-apt autoclean 
+CURRENT_USER="${SUDO_USER:-$(logname)}"
 
-apt install mat2 bleachbit curl dconf-editor deluge filezilla firefox gufw git gimp gdebi gparted htop libreoffice-calc libreoffice-writer openvpn rkhunter snap snapd synaptic tilix virtualbox vlc unrar wget zip zsh dialog gnupg apt-transport-https -y
+apt-get update
+apt-get upgrade -y
 
-echo "installing veracrypt & y-ppa-manager via PPA"
-add-apt-repository ppa:unit193/encryption -y &&
-add-apt-repository ppa:webupd8team/y-ppa-manager -y &&
-apt update && apt install veracrypt y-ppa-manager -y
+echo "Installing core packages..."
+apt-get install -y \
+  curl wget zip unzip gdebi apt-transport-https software-properties-common \
+  ca-certificates gnupg lsb-release gufw git gparted htop openvpn \
+  rkhunter synaptic tilix flatpak util-linux preload zram-tools \
+  libreoffice bleachbit deluge foliate gimp thunderbird plank tlp \
+  celluloid timeshift mintinstall mint-meta-codecs
 
-echo "let's enable snap packages"
-rm /etc/apt/preferences.d/nosnap.pref && apt install snapd -y
+echo "Setting up Flathub..."
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-echo "Installing snap packages"
-snap install nordpass telegram-desktop authy brave
+echo "Swap check:"
+swapon --show || true
 
-#allows nordpass snap to connect to browsers
-snap connect nordpass:password-manager-service
+echo "Applying sysctl tweak..."
+cat >/etc/sysctl.d/99-mint-performance.conf <<EOF
+vm.vfs_cache_pressure=50
+EOF
+sysctl --system
 
-echo "Installing Deja-Dup Backup and Visual Studio Tool"
-snap install deja-dup --classic && snap install code --classic
+apt-get --fix-broken install -y
 
-echo "Installing balena etcher"
-curl -1sLf \
-   'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
-   | sudo -E bash &&
-   apt update && apt install balena-etcher-electron -y
+echo "Installing Google Chrome..."
+wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install -y ./google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
 
-echo "Installing WebTorrent & Chrome" 
-wget https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i webtorrent*.deb google-chrome-stable*.deb
-rm webtorrent*.deb google-chrome-stable*.deb 
-apt -f install
+echo "Installing VeraCrypt Ubuntu 24.04 package..."
+wget -q https://sourceforge.net/projects/veracrypt/files/VeraCrypt%201.26.24/Linux/veracrypt-1.26.24-Ubuntu-24.04-amd64.deb/download -O veracrypt.deb
+apt-get install -y ./veracrypt.deb
+rm veracrypt.deb
 
-#auto gets my other script's
-echo "Grabbing other scripts: rkhunter-check, auto-update-ubuntu-script"
-wget https://raw.githubusercontent.com/AmirIqbal1/auto-update-ubuntu-script/master/update.sh https://raw.githubusercontent.com/AmirIqbal1/rkhunter-script/master/rkhunter-check.sh
-echo "chmodding above scripts"
-chmod +x update.sh rkhunter-check.sh
+echo "Installing balenaEtcher..."
+wget -q https://github.com/balena-io/etcher/releases/download/v2.1.6/balena-etcher_2.1.6_amd64.deb
+apt-get install -y ./balena-etcher_2.1.6_amd64.deb
+rm balena-etcher_2.1.6_amd64.deb
 
-#fixes any errors and auto cleans packages
-echo "auto cleaning now, and fixing any errors."
-dpkg --configure -a &&
-apt install -f &&
-apt clean &&
-apt autoclean &&
-apt autoremove -y
+echo "Installing VS Code..."
+install -d -m 0755 /etc/apt/keyrings
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/keyrings/vscode.gpg
+echo "deb [signed-by=/etc/apt/keyrings/vscode.gpg] https://packages.microsoft.com/repos/code stable main" \
+  >/etc/apt/sources.list.d/vscode.list
+apt-get update
+apt-get install -y code
 
-echo ""
-echo -e "\e[42mrkhunter has been installed, please configure it using link in README.md file."
+echo "Installing Spotify..."
+curl -fsSL https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc \
+  | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" \
+  >/etc/apt/sources.list.d/spotify.list
+apt-get update
+apt-get install -y spotify-client
 
-echo ""
-echo "All done! You should check above to see if any errors occured. A system reboot is recommended."
+echo "Installing WebTorrent Desktop..."
+wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb
+apt-get install -y ./webtorrent-desktop_0.24.0_amd64.deb
+rm webtorrent-desktop_0.24.0_amd64.deb
+
+echo "Removing Deja Dup and Firefox if installed..."
+apt-get remove --purge -y deja-dup firefox || true
+
+echo "Installing Flatpak apps..."
+flatpak install -y --no-upgrade flathub \
+  org.gnome.Calculator \
+  org.telegram.desktop \
+  io.github.hvdwofl.jExifToolGUI \
+  com.github.unrud.VideoDownloader \
+  io.github.flattool.Warehouse
+
+echo "Downloading scripts..."
+wget -q https://raw.githubusercontent.com/AmirIqbal1/rkhunter-script/master/rkhunter-check.sh
+wget -q https://raw.githubusercontent.com/AmirIqbal1/Flatpak-cleaner/refs/heads/main/flatpak_cleanup.sh
+chmod +x rkhunter-check.sh flatpak_cleanup.sh
+
+echo "Cloning GitHub tools..."
+git clone -q https://github.com/AmirIqbal1/hardening-debian || true
+
+echo "Enabling SSD TRIM..."
+fstrim -av || true
+systemctl enable --now fstrim.timer
+
+echo "Enabling TLP..."
+systemctl enable --now tlp || true
+
+echo "Adding $CURRENT_USER to sudo group..."
+usermod -aG sudo "$CURRENT_USER"
+
+echo "Cleaning up..."
+apt-get autoremove -y
+apt-get clean
+apt-get autoclean
+
+echo -e "\e[42mDone. Reboot recommended.\e[0m"
