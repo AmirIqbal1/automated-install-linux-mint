@@ -185,17 +185,6 @@ Helpful guide:
 
 ---
 
-# ❌ Removed Packages
-
-The script removes:
-
-```text
-Firefox
-Deja Dup
-```
-
----
-
 # 📋 Tested On
 
 - Linux Mint 22.x Cinnamon
