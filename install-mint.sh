@@ -76,7 +76,7 @@ echo "Removing Deja Dup if installed..."
 apt-get remove --purge -y deja-dup || true
 
 echo "Installing Flatpak apps..."
-flatpak install -y --no-upgrade flathub \
+flatpak install -y flathub \
   org.telegram.desktop \
   io.github.hvdwofl.jExifToolGUI \
   com.github.unrud.VideoDownloader \
