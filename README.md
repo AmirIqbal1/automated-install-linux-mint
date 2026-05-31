@@ -53,6 +53,7 @@ preload
 zram-tools
 flatpak
 libreoffice
+librewolf
 bleachbit
 deluge
 foliate
