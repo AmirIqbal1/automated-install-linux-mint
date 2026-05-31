@@ -20,7 +20,7 @@ apt-get install -y \
   ca-certificates gnupg lsb-release gufw git gparted htop openvpn \
   rkhunter synaptic tilix flatpak util-linux preload zram-tools \
   libreoffice bleachbit deluge foliate gimp thunderbird plank tlp \
-  celluloid timeshift mint-meta-codecs
+  celluloid timeshift mint-meta-codecs vlc
 
 echo "Setting up Flathub..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
