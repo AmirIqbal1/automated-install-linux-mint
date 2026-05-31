@@ -63,7 +63,6 @@ tlp
 celluloid
 timeshift
 mint-meta-codecs
-mintinstall
 ```
 
 ---
@@ -94,7 +93,6 @@ mintinstall
 Telegram
 Warehouse
 Video Downloader
-GNOME Calculator
 jExifToolGUI
 ```
 
