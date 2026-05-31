@@ -20,7 +20,7 @@ apt-get install -y \
   ca-certificates gnupg lsb-release gufw git gparted htop openvpn \
   rkhunter synaptic tilix flatpak util-linux preload zram-tools \
   libreoffice bleachbit deluge foliate gimp thunderbird plank tlp \
-  celluloid timeshift mintinstall mint-meta-codecs
+  celluloid timeshift mint-meta-codecs
 
 echo "Setting up Flathub..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -42,7 +42,7 @@ apt-get install -y ./google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
 echo "Installing VeraCrypt Ubuntu 24.04 package..."
-wget -q https://sourceforge.net/projects/veracrypt/files/VeraCrypt%201.26.24/Linux/veracrypt-1.26.24-Ubuntu-24.04-amd64.deb/download -O veracrypt.deb
+wget -q https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-1.26.24-Ubuntu-24.04-amd64.deb -O veracrypt.deb
 apt-get install -y ./veracrypt.deb
 rm veracrypt.deb
 
@@ -72,12 +72,11 @@ wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24
 apt-get install -y ./webtorrent-desktop_0.24.0_amd64.deb
 rm webtorrent-desktop_0.24.0_amd64.deb
 
-echo "Removing Deja Dup and Firefox if installed..."
-apt-get remove --purge -y deja-dup firefox || true
+echo "Removing Deja Dup if installed..."
+apt-get remove --purge -y deja-dup || true
 
 echo "Installing Flatpak apps..."
 flatpak install -y --no-upgrade flathub \
-  org.gnome.Calculator \
   org.telegram.desktop \
   io.github.hvdwofl.jExifToolGUI \
   com.github.unrud.VideoDownloader \
@@ -97,9 +96,6 @@ systemctl enable --now fstrim.timer
 
 echo "Enabling TLP..."
 systemctl enable --now tlp || true
-
-echo "Adding $CURRENT_USER to sudo group..."
-usermod -aG sudo "$CURRENT_USER"
 
 echo "Cleaning up..."
 apt-get autoremove -y
