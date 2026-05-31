@@ -17,7 +17,7 @@ apt-get upgrade -y
 echo "Installing core packages..."
 apt-get install -y \
   curl wget zip unzip gdebi apt-transport-https software-properties-common \
-  ca-certificates gnupg lsb-release gufw git gparted htop openvpn \
+  ca-certificates gnupg lsb-release gufw git gparted extrepo htop openvpn \
   rkhunter synaptic tilix flatpak util-linux preload zram-tools \
   libreoffice bleachbit deluge foliate gimp thunderbird plank tlp \
   celluloid timeshift mint-meta-codecs vlc
@@ -66,6 +66,11 @@ echo "deb https://repository.spotify.com stable non-free" \
   >/etc/apt/sources.list.d/spotify.list
 apt-get update
 apt-get install -y spotify-client
+
+echo "Installing Librewolf Browser"
+apt update && sudo apt install extrepo -y
+extrepo enable librewolf && sudo extrepo update librewolf
+apt update && sudo apt install librewolf -y
 
 echo "Installing WebTorrent Desktop..."
 wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb
