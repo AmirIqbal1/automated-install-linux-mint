@@ -72,8 +72,8 @@ wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24
 apt-get install -y ./webtorrent-desktop_0.24.0_amd64.deb
 rm webtorrent-desktop_0.24.0_amd64.deb
 
-echo "Removing Deja Dup if installed..."
-apt-get remove --purge -y deja-dup || true
+echo "Removing Deja Dup & Celluloid if installed..."
+apt-get remove --purge -y deja-dup celluloid || true
 
 echo "Installing Flatpak apps..."
 flatpak install -y flathub \
