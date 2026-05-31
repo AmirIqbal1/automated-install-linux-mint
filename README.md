@@ -63,6 +63,7 @@ tlp
 celluloid
 timeshift
 mint-meta-codecs
+vlc
 ```
 
 ---
