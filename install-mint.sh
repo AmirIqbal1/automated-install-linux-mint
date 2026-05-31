@@ -72,6 +72,11 @@ wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24
 apt-get install -y ./webtorrent-desktop_0.24.0_amd64.deb
 rm webtorrent-desktop_0.24.0_amd64.deb
 
+echo "Installing AppFlowy"
+wget -q https://github.com/AppFlowy-IO/AppFlowy/releases/download/0.12.1/AppFlowy-0.12.1-linux-x86_64.deb 
+apt-get install -y AppFlowy-0.12.1-linux-x86_64.deb
+rm AppFlowy-0.12.1-linux-x86_64.deb
+
 echo "Removing Deja Dup & Celluloid if installed..."
 apt-get remove --purge -y deja-dup celluloid || true
 
