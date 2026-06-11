@@ -72,11 +72,6 @@ apt update && sudo apt install extrepo -y
 extrepo enable librewolf && sudo extrepo update librewolf
 apt update && sudo apt install librewolf -y
 
-echo "Installing WebTorrent Desktop..."
-wget -q https://github.com/webtorrent/webtorrent-desktop/releases/download/v0.24.0/webtorrent-desktop_0.24.0_amd64.deb
-apt-get install -y ./webtorrent-desktop_0.24.0_amd64.deb
-rm webtorrent-desktop_0.24.0_amd64.deb
-
 echo "Installing AppFlowy"
 wget -q https://github.com/AppFlowy-IO/AppFlowy/releases/download/0.12.1/AppFlowy-0.12.1-linux-x86_64.deb 
 apt-get install -y AppFlowy-0.12.1-linux-x86_64.deb
@@ -87,6 +82,7 @@ apt-get remove --purge -y deja-dup celluloid || true
 
 echo "Installing Flatpak apps..."
 flatpak install -y flathub \
+  com.stremio.Stremio \
   org.telegram.desktop \
   io.github.hvdwofl.jExifToolGUI \
   com.github.unrud.VideoDownloader \
