@@ -92,6 +92,7 @@ vlc
 # 📦 Flatpak Applications
 
 ```text
+Stremio
 Telegram
 Warehouse
 Video Downloader
