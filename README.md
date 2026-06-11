@@ -76,7 +76,6 @@ vlc
 | Google Chrome    | Official `.deb` |
 | VeraCrypt        | Ubuntu 24.04 `.deb` |
 | Balena Etcher    | Official `.deb` |
-| WebTorrent       | GitHub release `.deb` |
 
 ---
 
