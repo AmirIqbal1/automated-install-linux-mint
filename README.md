@@ -165,7 +165,7 @@ Persisted in:
 |------------------------------------------------------------------------|-------------|
 | [`rkhunter-check`](https://github.com/AmirIqbal1/rkhunter-script)     | Automates rkhunter scans |
 | [`flatpak_cleanup.sh`](https://github.com/AmirIqbal1/Flatpak-cleaner) | Removes unused Flatpak data |
-| [`hardening-debian`](https://github.com/AmirIqbal1/hardening-debian)  | Security hardening tools |
+| [`hardening-linux-mint`](https://github.com/AmirIqbal1/hardening-linux-mint)  | Security hardening tools |
 
 ---
 
