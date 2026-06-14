@@ -180,7 +180,7 @@ Persisted in:
 
 Helpful guide:
 
-[How to configure rkhunter](https://tecadmin.net/how-to-install-rkhunter-on-ubuntu)
+[How to configure rkhunter]([https://tecadmin.net/how-to-install-rkhunter-on-ubuntu](https://linux.how2shout.com/install-and-use-rootkit-hunter-on-ubuntu-such-as-24-04-or-22-04/))
 
 ---
 
