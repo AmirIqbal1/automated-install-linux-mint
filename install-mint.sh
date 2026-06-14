@@ -91,7 +91,8 @@ flatpak install -y flathub \
 echo "Downloading scripts..."
 wget -q https://raw.githubusercontent.com/AmirIqbal1/rkhunter-script/master/rkhunter-check.sh
 wget -q https://raw.githubusercontent.com/AmirIqbal1/Flatpak-cleaner/refs/heads/main/flatpak_cleanup.sh
-chmod +x rkhunter-check.sh flatpak_cleanup.sh
+wget -q https://raw.githubusercontent.com/AmirIqbal1/hardening-linux-mint/refs/heads/main/mint_hardening.sh
+chmod +x rkhunter-check.sh flatpak_cleanup.sh mint_hardening.sh
 
 echo "Installing coloured terminal prompts..."
 
