@@ -83,6 +83,7 @@ apt-get remove --purge -y deja-dup celluloid || true
 echo "Installing Flatpak apps..."
 flatpak install -y flathub \
   com.stremio.Stremio \
+  io.github.mfat.sshpilot \
   org.telegram.desktop \
   io.github.hvdwofl.jExifToolGUI \
   com.github.unrud.VideoDownloader \
