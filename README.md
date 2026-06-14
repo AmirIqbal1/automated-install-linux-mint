@@ -38,6 +38,7 @@ sudo ./install-mint.sh
 
 ```text
 curl
+brave
 wget
 zip / unzip
 gdebi
@@ -61,7 +62,6 @@ gimp
 thunderbird
 plank
 tlp
-celluloid
 timeshift
 mint-meta-codecs
 vlc
@@ -73,7 +73,6 @@ vlc
 
 | Application      | Install Method |
 |------------------|----------------|
-| Google Chrome    | Official `.deb` |
 | VeraCrypt        | Ubuntu 24.04 `.deb` |
 | Balena Etcher    | Official `.deb` |
 
