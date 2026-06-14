@@ -91,6 +91,7 @@ vlc
 
 ```text
 Stremio
+SSH Pilot
 Telegram
 Warehouse
 Video Downloader
