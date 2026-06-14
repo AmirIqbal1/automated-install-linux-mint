@@ -91,8 +91,7 @@ flatpak install -y flathub \
 echo "Downloading scripts..."
 wget -q https://raw.githubusercontent.com/AmirIqbal1/rkhunter-script/master/rkhunter-check.sh
 wget -q https://raw.githubusercontent.com/AmirIqbal1/Flatpak-cleaner/refs/heads/main/flatpak_cleanup.sh
-wget -q https://raw.githubusercontent.com/AmirIqbal1/hardening-linux-mint/refs/heads/main/mint_hardening.sh
-chmod +x rkhunter-check.sh flatpak_cleanup.sh mint_hardening.sh
+chmod +x rkhunter-check.sh flatpak_cleanup.sh
 
 echo "Installing coloured terminal prompts..."
 
@@ -104,8 +103,8 @@ else
     echo "Warning: setup-terminal-prompts.sh not found. Skipping terminal prompt setup."
 fi
 
-echo "Cloning GitHub tools..."
-git clone -q https://github.com/AmirIqbal1/hardening-debian || true
+echo "Cloning hardening-mint tools..."
+git clone -q https://github.com/AmirIqbal1/hardening-linux-mint.git || true
 
 echo "Enabling SSD TRIM..."
 fstrim -av || true
