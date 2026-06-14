@@ -187,8 +187,16 @@ Helpful guide:
 # 📋 Tested On
 
 - Linux Mint 22.x Cinnamon
-- Ubuntu 24.04 base
 
+---
+
+### 🖥️ Enhanced Terminal Experience
+- Automatic coloured Bash prompts for both normal users and root.
+- Green `[USER]` prompt for standard accounts.
+- Red `[ROOT]` prompt for administrative shells.
+- Makes privileged sessions instantly identifiable in Tilix and other terminals.
+- Easier command auditing when scrolling through large terminal logs.
+  
 ---
 
 # 🔄 After Installation
