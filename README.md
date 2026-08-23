@@ -90,6 +90,7 @@ vlc
 # 📦 Flatpak Applications
 
 ```text
+Jellyfin
 Stremio
 SSH Pilot
 Telegram
