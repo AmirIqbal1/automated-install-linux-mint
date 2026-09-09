@@ -19,7 +19,7 @@ apt-get install -y \
   curl wget zip unzip gdebi apt-transport-https software-properties-common \
   ca-certificates gnupg lsb-release gufw git gparted extrepo htop mat2 openvpn \
   rkhunter synaptic tilix flatpak util-linux preload zram-tools \
-  libreoffice bleachbit deluge foliate gimp thunderbird plank tlp \
+  libreoffice bleachbit deluge foliate gimp plank tlp \
   celluloid timeshift mint-meta-codecs vlc
 
 echo "Setting up Flathub..."
