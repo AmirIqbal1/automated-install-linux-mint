@@ -59,7 +59,6 @@ bleachbit
 deluge
 foliate
 gimp
-thunderbird
 plank
 tlp
 timeshift
