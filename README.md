@@ -2,10 +2,6 @@
 
 Automated post-install setup for **Linux Mint 22.x Cinnamon**, based on Ubuntu 24.04 LTS.
 
-The goal is simple:
-
-> Install Linux Mint → clone this repository → run one command → get my usual desktop setup.
-
 The installer handles system updates, desktop applications, developer tools, Flatpaks, browser repositories, performance settings, helper scripts and terminal configuration.
 
 ---
